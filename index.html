@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JS Reference VS Copy</title>
+</head>
+<body>
+
+  <script>
+    
+    const players = ['Wes', 'Sarah', 'Ryan', 'Poppy'];
+    //Así no se copia, se modifica el original.
+        const team = players;
+        console.log(players, team);
+
+     // formas de copiar arrays
+    const team2 = players.slice();
+    const team3 = [].concat(players);
+    const team4 = [...players];
+    team4[3] = 'heeee hawww';
+    console.log(team4);
+    const team5 = Array.from(players);
+
+   
+    // Objects
+    const persona = {
+      nombre: 'Wes Bos',
+      edad: 80
+    }
+
+    // Creamos una copia del objeto con assign
+    const personaCopia = Object.assign({}, persona, { numero: 99, edad: 12 });
+    console.log(personaCopia);
+
+   
+    //Objeto con 2 niveles
+    const persona2 = {
+      nombre: 'Wes',
+      anios: 100,
+      social: {
+        twitter: '@wesbos',
+        facebook: 'wesbos.developer'
+      }
+    };
+
+    console.clear();
+    console.log(persona2);
+    //object assign no puede copiar un objeto con más de un nivel
+    const persona2Copia = Object.assign({}, persona2);
+    
+    //truco para convertir un json de cadena a objeto real para poder operar.
+    const persona2CopiaProfunda = JSON.parse(JSON.stringify(persona2));
+  </script>
+
+</body>
+</html>
